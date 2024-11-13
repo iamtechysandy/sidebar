@@ -1,0 +1,467 @@
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.main-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.grids {
+  width: 200px;
+  height: 120px;
+  border: 1px solid rgb(226, 207, 207);
+  border-radius: 1rem;
+}
+
+.grids {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mybtn {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+/* Button1 Styles */
+.btn1 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #000;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+
+.btn1:hover {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid black;
+  transition: 0.5s ease-in;
+}
+
+/* Arrow Styles */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s;
+  transform: translateX(0);
+}
+
+/* Hover Effect: Arrow Moves Out */
+.btn1:hover .arrow {
+  transform: translateX(8px);
+}
+
+/* SVG Path Styling */
+.arrow svg path {
+  fill: #fff;
+}
+
+.btn1:hover .arrow svg path {
+  fill: #000;
+}
+/* Button 2 styles */
+/* Button Styles */
+.btn2 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #343a40;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn2:hover {
+  background: linear-gradient(135deg, #007bff, #6610f2);
+  color: #fff;
+}
+
+/* Arrow Styles */
+.arrow {
+  display: inline-block;
+  transition: transform 0.3s, fill 0.3s;
+  transform: translateX(0);
+}
+
+/* Hover Effect: Arrow Moves Right */
+.btn2:hover .arrow {
+  transform: translateX(10px);
+}
+
+/* SVG Path Styling */
+.arrow svg path {
+  fill: #fff;
+}
+
+/* On Hover, Change Arrow Color */
+.btn2:hover .arrow svg path {
+  fill: #ffdd57;
+}
+
+/* Button 3 Styles */
+/* Button Styles */
+.btn3 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #01070e;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+.share {
+  display: inline-block;
+  transition: transform 0.3s, fill 0.3s;
+  transform: translateX(0);
+}
+
+.share svg path {
+  fill: #ffdd57;
+}
+
+.btn3:hover .share {
+  transform: translateX(10px);
+}
+
+.btn3:hover {
+  color: #000;
+  background-color: #fff;
+  border: 1px solid gray;
+}
+
+.btn3:hover .share svg path {
+  fill: #000;
+}
+
+/* Button Styles */
+.btn4 {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  overflow: hidden;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn4:hover {
+  background-color: #0056b3;
+}
+
+/* Download Icon Styles */
+.download {
+  position: relative;
+  display: inline-block;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Hover Effect: Icon Drops Down */
+.btn4:hover .download {
+  transform: translatex(100%);
+}
+
+/* SVG Path Styling */
+.download svg path {
+  fill: #fff;
+}
+
+/* Main-Grid2 */
+.main-grid2 {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+/* Btn5 */
+.btn5 {
+  background-color: transparent;
+  border: 1px solid #266db6;
+  box-sizing: border-box;
+  color: #00132c;
+  font-family: "Avenir Next LT W01 Bold", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  padding: 16px 23px;
+  position: relative;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border-radius: 0.5rem;
+}
+
+.btn5:hover,
+.btn5:active {
+  outline: 0;
+}
+
+.btn5:hover {
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn5:before {
+  background-color: #d5edf6;
+  content: "";
+  height: calc(100% + 3px);
+  position: absolute;
+  right: -7px;
+  top: -9px;
+  transition: background-color 300ms ease-in;
+  width: 100%;
+  z-index: -1;
+  border-radius: 0.5rem;
+}
+
+.btn5:hover:before {
+  background-color: #6dcff6;
+}
+
+.btn6 {
+  background-color: #fbeee0;
+  border: 2px solid #422800;
+  border-radius: 30px;
+  box-shadow: #422800 4px 4px 0 0;
+  color: #422800;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 0 18px;
+  line-height: 50px;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn6:hover {
+  background-color: #fff;
+}
+
+.btn6:active {
+  box-shadow: #422800 2px 2px 0 0;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .btn6 {
+    min-width: 120px;
+    padding: 0 25px;
+  }
+}
+
+/* 
+btn7 */
+.btn7 {
+  --b: 3px; /* border thickness */
+  --s: 0.45em; /* size of the corner */
+  --color: #373b44;
+
+  padding: calc(0.5em + var(--s)) calc(0.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background: conic-gradient(
+      from 90deg at var(--b) var(--b),
+      #0000 90deg,
+      var(--color) 0
+    )
+    var(--_p) var(--_p) / calc(100% - var(--b) - 2 * var(--_p))
+    calc(100% - var(--b) - 2 * var(--_p));
+  transition: 0.3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: 0.6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn7:hover,
+.btn7:focus-visible {
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: 0.05em;
+}
+
+.btn7:active {
+  background: var(--color);
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .btn5 {
+    padding: 16px 32px;
+  }
+}
+
+/* Btn8 */
+.btn8 {
+  align-items: center;
+  background-color: #fee6e3;
+  border: 2px solid #111;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn8:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform 0.2s ease-out;
+  z-index: -1;
+}
+
+.btn8:hover:after {
+  transform: translate(0, 0);
+}
+
+.btn8:active {
+  background-color: #ffdeda;
+  outline: 0;
+}
+
+.btn8:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .btn8 {
+    padding: 0 40px;
+  }
+}
+
+/* btn9 */
+.btn9 {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn9:after {
+  content: "";
+  background-color: #ffe54c;
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.btn9:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  .btn9 {
+    padding: 13px 50px 13px;
+  }
+}
+
+/* Media Query for Tablet (768px and below) */
+@media screen and (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .main-grid {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .main-grid2 {
+    flex-direction: column;
+  }
+
+  .grids {
+    width: 180px;
+    height: 100px;
+  }
+}
+
+/* Media Query for Mobile (480px and below) */
+@media screen and (max-width: 480px) {
+  body {
+    flex-direction: column;
+  }
+  .grids {
+    width: 100%;
+    height: 80px;
+  }
+}
