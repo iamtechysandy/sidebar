@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Responsive Sidebar Layout with Search Dropdown</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style></style>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-900">
+    <!-- Navbar (fixed at top) -->
+    <nav
+      class="fixed top-0 left-0 right-0 z-50 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700"
+    >
+      <div class="flex items-center justify-between px-4 py-2">
+        <!-- Left: Logo and Toggle button for mobile -->
+        <div class="flex items-center space-x-4">
+          <button
+            onclick="toggleSidebar()"
+            class="p-2 text-gray-600 dark:text-gray-400 rounded-md focus:outline-none md:hidden"
+          >
+            <!-- Hamburger icon -->
+            <svg
+              aria-hidden="true"
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <!-- Logo and Brand Name -->
+          <a href="#" class="flex items-center">
+            <img src="assets/img/nobg_logo.png" alt="Logo" class="h-8" />
+            <span class="ml-2 text-2xl font-semibold dark:text-white"
+              >XYZ Garage</span
+            >
+          </a>
+        </div>
+
+        <!-- Right: Search, Notification, Profile Icons -->
+        <div class="flex items-center space-x-4 relative">
+          <!-- Search Icon with Dropdown Input -->
+          <button
+            onclick="toggleSearchInput()"
+            class="p-2 text-gray-600 dark:text-gray-400 rounded-md focus:outline-none relative"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M11 4a7 7 0 016.39 10.76l5.29 5.3a1 1 0 01-1.42 1.42l-5.3-5.29A7 7 0 1111 4z"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Dropdown Search Input Field (hidden initially) -->
+          <div
+            id="searchDropdown"
+            class="hidden absolute top-12 right-0 w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-2"
+          >
+            <input
+              type="text"
+              placeholder="Search..."
+              class="w-full px-4 py-2 text-sm bg-gray-100 dark:bg-gray-700 rounded-lg focus:outline-none dark:text-white"
+            />
+          </div>
+
+          <!-- Notification Icon -->
+          <button
+            class="p-2 text-gray-600 dark:text-gray-400 rounded-md focus:outline-none"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2a6 6 0 00-6 6v3.586L2.707 14.293A1 1 0 003.414 16h13.172a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM8 17a2 2 0 104 0H8z"
+              ></path>
+            </svg>
+          </button>
+
+          <!-- Profile Dropdown -->
+          <div class="relative">
+            <button
+              onclick="toggleProfileDropdown()"
+              class="p-2 text-gray-600 dark:text-gray-400 rounded-full focus:outline-none"
+            >
+              <img
+                src="assets/img/nobg_logo.png"
+                class="w-8 h-8 rounded-full"
+                alt="User"
+              />
+            </button>
+            <div
+              id="profileDropdown"
+              class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg"
+            >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >Profile</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >Settings</a
+              >
+              <a
+                href="#"
+                class="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600"
+                >Logout</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar (hidden on mobile by default) -->
+    <aside
+      id="sidebar"
+      class="fixed top-0 left-0 w-64 h-full pt-16 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 transform -translate-x-full md:translate-x-0 transition-transform"
+    >
+      <nav class="p-4 space-y-2 overflow-y-auto">
+        <a
+          href="index.html"
+          id="home-link"
+          class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg"
+        >
+          <img
+            src="assets/img/dashboard.png"
+            alt="Dashboard Icon"
+            width="16"
+            class="mr-2"
+          />
+          <span>Dashboard</span>
+        </a>
+
+        <a
+          href="inventory.html"
+          id="inventory-link"
+          class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg"
+        >
+          <img
+            src="assets/img/wholesale.png"
+            alt="Dashboard Icon"
+            width="16"
+            class="mr-2"
+          />
+          <span>Inventory</span>
+        </a>
+        <a
+          href="#"
+          class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg"
+        >
+          <img
+            src="assets/img/suspension.png"
+            alt="Dashboard Icon"
+            width="16"
+            class="mr-2"
+          />
+          <span>My Garage </span>
+        </a>
+        <a
+          href="#"
+          class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg"
+        >
+          <img src="assets/img/settings.png" alt="" width="16px" class="mr-2" />
+          <span> Settings </span></a
+        >
+
+        <a
+          href="#"
+          class="flex items-center px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 rounded-lg"
+        >
+          <span>Messages</span></a
+        >
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="pt-20 md:ml-64 transition-all">
+      <!-- Main Dashboard -->
+      <div
+        class="flex flex-col md:flex-row items-center justify-center p-4 space-y-4 md:space-y-0 md:space-x-4"
+      >
+        <!--Dashboard 1  -->
+        <div
+          class="flex items-center justify-center w-full md:w-2/3 lg:w-1/2 border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4"
+        >
+          <div class="w-full">
+            <h2
+              class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center"
+            >
+              Stocks Inventory
+            </h2>
+            <!-- Tyres  -->
+            <div
+              class="flex items-center gap-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              <!-- Icon with Tailwind classes for grayscale and hover effect -->
+              <img
+                src="assets/img/wheel.png"
+                alt="Wheel Icon"
+                class="w-8 h-8 grayscale hover:grayscale-0 transition duration-300"
+              />
+
+              <!-- Main Content Section -->
+              <div class="flex flex-col gap-2 text-gray-800 dark:text-white">
+                <!-- Main title with subtle separator -->
+                <div class="flex items-center gap-1">
+                  <h3 class="text-2xl font-semibold">Tyres</h3>
+                </div>
+
+                <!-- Details in a cleaner layout -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400">Total:</span>
+                    <span class="text-gray-800 dark:text-white">348</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Last Month Use:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">147</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Used This Month:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">60</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Wipers -->
+            <div
+              class="flex items-center gap-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              <!-- Icon with Tailwind classes for grayscale and hover effect -->
+              <img
+                src="assets/img/wipers.png"
+                alt="Wipers Icons"
+                class="w-8 h-8 grayscale hover:grayscale-0 transition duration-300"
+              />
+
+              <!-- Main Content Section -->
+              <div class="flex flex-col gap-2 text-gray-800 dark:text-white">
+                <!-- Main title with subtle separator -->
+                <div class="flex items-center gap-1">
+                  <h3 class="text-2xl font-semibold">Wipers</h3>
+                </div>
+
+                <!-- Details in a cleaner layout -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400">Total:</span>
+                    <span class="text-gray-800 dark:text-white">348</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Last Month Use:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">147</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Used This Month:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">60</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Dashborad 2 -->
+        <div
+          class="flex items-center justify-center w-full md:w-2/3 lg:w-1/2 border-2 border-dashed rounded-lg border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-4"
+        >
+          <div class="w-full">
+            <h2
+              class="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center"
+            >
+              Total Car Repairs By Brand
+            </h2>
+            <!-- Tyres  -->
+            <div
+              class="flex items-center gap-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              <!-- Icon with Tailwind classes for grayscale and hover effect -->
+              <img
+                src="assets/img/wheel.png"
+                alt="Wheel Icon"
+                class="w-8 h-8 grayscale hover:grayscale-0 transition duration-300"
+              />
+
+              <!-- Main Content Section -->
+              <div class="flex flex-col gap-2 text-gray-800 dark:text-white">
+                <!-- Main title with subtle separator -->
+                <div class="flex items-center gap-1">
+                  <h3 class="text-2xl font-semibold">Tyres</h3>
+                </div>
+
+                <!-- Details in a cleaner layout -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400">Total:</span>
+                    <span class="text-gray-800 dark:text-white">348</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Last Month Use:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">147</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Used This Month:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">60</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Wipers -->
+            <div
+              class="flex items-center gap-4 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              <!-- Icon with Tailwind classes for grayscale and hover effect -->
+              <img
+                src="assets/img/wipers.png"
+                alt="Wipers Icons"
+                class="w-8 h-8 grayscale hover:grayscale-0 transition duration-300"
+              />
+
+              <!-- Main Content Section -->
+              <div class="flex flex-col gap-2 text-gray-800 dark:text-white">
+                <!-- Main title with subtle separator -->
+                <div class="flex items-center gap-1">
+                  <h3 class="text-2xl font-semibold">Wipers</h3>
+                </div>
+
+                <!-- Details in a cleaner layout -->
+                <div class="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400">Total:</span>
+                    <span class="text-gray-800 dark:text-white">348</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Last Month Use:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">147</span>
+                  </div>
+                  <div class="flex items-center gap-1 text-lg font-medium">
+                    <span class="text-gray-500 dark:text-gray-400"
+                      >Used This Month:</span
+                    >
+                    <span class="text-gray-800 dark:text-white">60</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Grid Container -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"
+      >
+        <!-- Single Box with "+" Icon -->
+        <div
+          class="flex items-center justify-center h-40 border-2 border-dotted border-gray-300 dark:border-gray-600 rounded-lg"
+        >
+          <span class="text-3xl text-gray-400 dark:text-gray-500">+</span>
+        </div>
+
+        <!-- Repeating this 5 more times to get 6 boxes in total -->
+        <div
+          class="flex items-center justify-center h-40 border-2 border-dotted border-gray-300 dark:border-gray-600 rounded-lg"
+        >
+          <span class="text-3xl text-gray-400 dark:text-gray-500">+</span>
+        </div>
+
+        <div
+          class="flex items-center justify-center h-40 border-2 border-dotted border-gray-300 dark:border-gray-600 rounded-lg"
+        >
+          <span class="text-3xl text-gray-400 dark:text-gray-500">+</span>
+        </div>
+
+        <div
+          class="flex items-center justify-center h-40 border-2 border-dotted border-gray-300 dark:border-gray-600 rounded-lg"
+        >
+          <span class="text-3xl text-gray-400 dark:text-gray-500">+</span>
+        </div>
+
+        <div
+          class="flex items-center justify-center h-40 border-2 border-dotted border-gray-300 dark:border-gray-600 rounded-lg"
+        >
+          <span class="text-3xl text-gray-400 dark:text-gray-500">+</span>
+        </div>
+
+        <div
+          class="flex items-center justify-center h-40 border-2 border-dotted border-gray-300 dark:border-gray-600 rounded-lg"
+        >
+          <span class="text-3xl text-gray-400 dark:text-gray-500">+</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- JavaScript for Sidebar Toggle and Dropdowns -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,35 @@
+/* Active Link Styling */
+.active {
+  background-color: #6a92d3; /* Tailwind’s blue-500 */
+  color: #ffffff !important;
+  position: relative;
+  overflow: hidden; /* Keeps the border line effect within bounds */
+}
+
+/* Animated left border effect */
+.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 8px; /* Adjust width for the effect */
+  background-color: #0d0d0e; /* Darker shade of blue */
+  transform: scaleY(0);
+  transform-origin: top; /* Animation starts from the top */
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Trigger the scale effect on hover and active */
+.active:hover::before,
+.active::before {
+  transform: scaleY(1); /* Expands the border vertically */
+}
+
+.active img {
+  filter: invert(80%);
+}
+
+.active:hover {
+  color: #000 !important;
+}
