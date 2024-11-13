@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buttons</title>
+    <style>
+      .main-grid {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .grids {
+        width: 200px;
+        height: 120px;
+        border: 1px solid rgb(226, 207, 207);
+        border-radius: 1rem;
+      }
+
+      /* Media Query for Tablet (768px and below) */
+      @media screen and (max-width: 768px) {
+        .main-grid {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+
+        .grids {
+          width: 180px;
+          height: 100px;
+        }
+      }
+
+      /* Media Query for Mobile (480px and below) */
+      @media screen and (max-width: 480px) {
+        .grids {
+          width: 100%;
+          height: 80px;
+        }
+      }
+      .grids {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .mybtn {
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+
+      /* Button1 Styles */
+      .btn1 {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #000;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background-color 0.3s;
+      }
+
+      .btn1:hover {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid black;
+        transition: 0.5s ease-in;
+      }
+
+      /* Arrow Styles */
+      .arrow {
+        display: inline-block;
+        transition: transform 0.3s;
+        transform: translateX(0);
+      }
+
+      /* Hover Effect: Arrow Moves Out */
+      .btn1:hover .arrow {
+        transform: translateX(8px);
+      }
+
+      /* SVG Path Styling */
+      .arrow svg path {
+        fill: #fff;
+      }
+
+      .btn1:hover .arrow svg path {
+        fill: #000;
+      }
+      /* Button 2 styles */
+      /* Button Styles */
+      .btn2 {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #343a40;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .btn2:hover {
+        background: linear-gradient(135deg, #007bff, #6610f2);
+        color: #fff;
+      }
+
+      /* Arrow Styles */
+      .arrow {
+        display: inline-block;
+        transition: transform 0.3s, fill 0.3s;
+        transform: translateX(0);
+      }
+
+      /* Hover Effect: Arrow Moves Right */
+      .btn2:hover .arrow {
+        transform: translateX(10px);
+      }
+
+      /* SVG Path Styling */
+      .arrow svg path {
+        fill: #fff;
+      }
+
+      /* On Hover, Change Arrow Color */
+      .btn2:hover .arrow svg path {
+        fill: #ffdd57;
+      }
+
+      /* Button 3 Styles */
+      /* Button Styles */
+      .btn3 {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #01070e;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      .share {
+        display: inline-block;
+        transition: transform 0.3s, fill 0.3s;
+        transform: translateX(0);
+      }
+
+      .share svg path {
+        fill: #ffdd57;
+      }
+
+      .btn3:hover .share {
+        transform: translateX(10px);
+      }
+
+      .btn3:hover {
+        color: #000;
+        background-color: #fff;
+        border: 1px solid gray;
+      }
+
+      .btn3:hover .share svg path {
+        fill: #000;
+      }
+
+      /* Button Styles */
+      .btn4 {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        overflow: hidden;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .btn4:hover {
+        background-color: #0056b3;
+      }
+
+      /* Download Icon Styles */
+      .download {
+        position: relative;
+        display: inline-block;
+        transition: transform 0.4s ease-in-out;
+      }
+
+      /* Hover Effect: Icon Drops Down */
+      .btn4:hover .download {
+        transform: translatex(100%);
+      }
+
+      /* SVG Path Styling */
+      .download svg path {
+        fill: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-grid">
+      <div class="child-1 grids">
+        <button class="btn1 mybtn">
+          Button1
+          <span class="arrow">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+              <path
+                d="M10 20A10 10 0 1 0 0 10a10 10 0 0 0 10 10zM8.711 4.3l5.7 5.766L8.7 15.711l-1.4-1.422 4.289-4.242-4.3-4.347z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="child-2 grids">
+        <button class="btn2 mybtn">
+          Button2
+          <span class="arrow">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="13.968"
+              height="19.908"
+            >
+              <path
+                d="M0 11.908v6a2 2 0 0 0 2 2h9.968a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v5.908h6.008V5.914l4.041 4.043L6.008 14v-2.092z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="child-3 grids">
+        <button class="btn3 mybtn">
+          Share Now
+          <span class="share">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22.703"
+              height="21.928"
+            >
+              <path
+                d="M1.056 21.928c0-6.531 5.661-9.034 10.018-9.375V18.1L22.7 9.044 11.073 0v4.836a10.5 10.5 0 0 0-7.344 3.352C-.618 12.946-.008 21 .076 21.928z"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+      <div class="child-4 grids">
+        <button class="btn4 mybtn">
+          Download
+          <span class="download">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xml:space="preserve"
+              width="20"
+              height="20"
+              viewBox="0 0 6.827 6.827"
+              style="
+                shape-rendering: geometricPrecision;
+                text-rendering: geometricPrecision;
+                image-rendering: optimizeQuality;
+                fill-rule: evenodd;
+                clip-rule: evenodd;
+              "
+            >
+              <g id="Layer_x0020_1">
+                <g id="_491470256">
+                  <path
+                    d="M3.413 1.26c-.68-.462-1.681.015-1.598 1.083-1.457.343-1.14 2.304.157 2.304h1.441V1.26z"
+                    style="fill: #00b0ff"
+                  />
+                  <path
+                    d="M4.853 4.647c.617 0 1.12-.519 1.12-1.156 0-.597-.41-1.039-.965-1.145-.261-.481-.645-.655-1.17-.568a1.244 1.244 0 0 0-.421-.515v3.387h1.44z"
+                    style="fill: #4fc3f7"
+                  />
+                  <path
+                    d="m1.667 4.92.822.823.822-.822-.15-.151-.565.564V3.138h-.214v2.196l-.564-.564z"
+                    style="fill: #01579b; fill-rule: nonzero"
+                  />
+                </g>
+              </g>
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
